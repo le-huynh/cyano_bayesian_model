@@ -1,0 +1,26 @@
+model{
+  
+  ### Covariates
+  for (s in 1:n_obs){
+    lambda[s] <- exp(mu)*SV[s]
+  }
+  
+  ### Observation model
+  # Strictly positive Observation
+  for ( s in 1:n_pres){
+    ngis[s] ~ dpois(lambda[pres[s]])T(1,)
+    Y_a[s] <- rho_a * ngis[s]
+    Y[pres[s]] ~ dgamma(Y_a[s], rho_b)
+  }
+  
+  # Zero Observation
+  for ( s in 1:n_abs){
+    proba[s] <- 1 - exp(-lambda[abs[s]])
+    Y[abs[s]] ~ dbern(proba[s])
+  }
+  
+  ### Prior
+  rho_a ~ dgamma(0.01, 0.01)
+  rho_b ~ dgamma(0.01, 0.01)
+  mu ~ dnorm(0, 0.01)
+}

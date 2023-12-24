@@ -1,0 +1,34 @@
+model {
+          
+### Covariates
+for (s in 1:n_obs){
+log(lambda[s]) <- theta0 +
+theta1 * Temp[s] +
+theta2 * TSI[s]
+}
+
+### Observation model
+# Strictly positive Observation
+for ( s in 1:n_pres){
+N[s] ~ dpois(lambda[pres[s]])T(1,)
+Y_a[s] <- a * N[s]
+Y[pres[s]] ~ dgamma(Y_a[s], b)
+}
+# Zero Observation
+for ( s in 1:n_abs){
+proba[s] <- 1 - exp(-lambda[abs[s]])
+Y[abs[s]] ~ dbern(proba[s])
+}
+
+### Prior
+# Regression coefficients
+theta0 ~ dnorm(0,5) 
+theta1 ~ dnorm(0,1) 
+theta2 ~ dnorm(0,1)
+
+# Gamma shape and rate parameters
+a ~ dgamma(0.01, 0.01)
+b ~ dgamma(0.01, 0.01)
+
+}
+
