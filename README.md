@@ -1,7 +1,7 @@
 
 ## Bayesian predictive model for toxic cyanobacteria occurrence from eutrophication and climate data
 
-<img align="left" alt="info" width="26px" src="https://github.com/le-huynh/lehuynh.rbind.io/blob/main/static/img/loglo_info.png?raw=true" /> [More info](https://lehuynh.rbind.io/project/proj_cyano/)  
+<img align="left" alt="info" width="26px" src="https://github.com/le-huynh/lehuynh.rbind.io/blob/main/static/img/loglo_info.png?raw=true" /> [More info](https://lehuynh.rbind.io/project/proj_cyano/post/)  
 
 
 This repo includes all data, code, results of data analysis, and documents related to the manuscript using Bayesian Hurdle Poisson model to predict toxic cyanobacteria from (TSI + climate data). 
